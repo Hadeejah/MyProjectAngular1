@@ -1,0 +1,222 @@
+<div class="  py-24 sm:py-32 h-screen" style="padding-top: .5rem; ">
+  <div class=" mx-auto max-w-7xl px-6 lg:px-8      ">
+    <div class="mx-auto mt-16 max-w-2xl rounded-3xl ring-1 ring-gray-200 sm:mt-20 lg:mx-0 lg:flex lg:max-w-none shadow "
+      style="background-color: rgba(100, 100, 102, 0.176);">
+      <div class="p-8 sm:p-10 lg:flex-auto">
+        <div class="flex flex-1 items-center justify-center sm:items-stretch sm:justify-start">
+          <div class="flex flex-shrink-0 items-center" style="margin-right: 3rem ;">
+            <img class="h-20 w-20" style="border-radius: 50%; margin-left: 7rem;"
+              src="https://img.freepik.com/vecteurs-premium/modele-logo-degrade-magasin-technologie_269830-349.jpg?w=2000"
+              alt="Your Company">
+            <h2>TECHNO STORE</h2>
+          </div>
+          <div class="hidden sm:ml-6 sm:block">
+            <div class="flex space-x-4">
+              <a class="text-gray-300 " style="padding-top: 1.5rem;color: chocolate; margin-left: 17rem;">Stocx:12</a>
+            </div>
+          </div>
+        </div>
+        <div class="mt-10 flex items-center gap-x-4">
+          <div class="h-px flex-auto bg-gray-100"></div>
+        </div>
+        <div class="card-body ">
+          <form style="padding-left: 4rem ;" [formGroup]="listProd">
+            <!-- <button (click)="add()">Add</button> -->
+            <table class="table w-full ">
+              <thead>
+                <tr>
+                  <th class="py-2 px-4 text-center">Produit</th>
+                  <th class="py-2 px-4 text-center">Prix</th>
+                  <th class="py-2 px-4 text-center">Quantite</th>
+                  <th class="py-2 px-4 text-center">Total</th>
+                  <th class="py-2 px-4 text-center">Action</th>
+              </thead>
+              <tbody id="selectionTableBody" formArrayName="prod_succurs"
+                *ngFor="let item of ProdValue.controls;let i=index" class="w-full">
+                <tr [formGroupName]="i">
+                  <td class="py-2 px-4 text-center">{{item.value.prod}}</td>
+                  <td class="py-2 px-4 text-center">{{item.value.prix}}</td>
+                  <td class="py-2 px-4 number-center"><input class="w-20" type="number" formControlName="qte" value="{{item.value.qte}}"></td>
+                  <td class="py-2 px-4 number-center">{{item.value.total}}</td>
+                  <td class="py-2 px-4 text-center"><button class="w-full"
+                      style="background-color: red;border-radius: 10%;">Supprimer</button></td>
+                </tr>
+              </tbody>
+            </table>
+          </form>
+        </div>
+        <div class="mt-10 flex items-center gap-x-4">
+          <div class="h-px flex-auto bg-gray-100"></div>
+        </div>
+        <form action="" [formGroup]="inputFooter">
+          <div class="flex justify-between w-65">
+            <div class="flex items-center">
+              <div class="bg-red-500 rounded-l-md p-2 text-white border border-r-0">Remise</div>
+              <input formControlName="remise" type="number" class="w-20" (change)="reductionMontant($event)">
+
+            </div>
+            <div class="flex items-center">
+              <div class="bg-green-500 w-full rounded-l-md p-2 text-white border border-r-0">
+                <h2>Montant Total</h2>
+              </div>
+              <input formControlName="montantTotal" type="number">
+            </div>
+            <div>
+              <button data-modal-target="defaultModal" data-modal-toggle="defaultModal"
+                class="block text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
+                type="button">
+                Suivant
+              </button>
+            </div>
+          </div>
+        </form>
+      </div>
+
+      <div class="-mt-2 p-2 lg:mt-0 lg:w-full lg:max-w-md lg:flex-shrink-0">
+        <div
+          class="rounded-2xl bg-gray-50 py-10 text-center ring-1 ring-inset ring-gray-900/5 lg:flex lg:flex-col lg:justify-center lg:py-16"
+          style="height: 80vh;">
+          <div class="mx-auto max-w-xs px-8">
+            <input type="text" name="" id="" placeholder="Entrer la reference" class="border-2 border-blue-500 p-2"
+              style="margin-bottom: 2rem;" (input)="searchProd($event)">
+            <div class="rounded-t-lg overflow-hidden border-2 border-gray-90">
+              <div class="flex justify-center">
+                <div class="border-b-2 border-gray-300">
+                  <img class=" " src="{{produit?.data.image}}" alt="Your Company">
+                </div>
+              </div>
+              <p class="mt-6 text-xs leading-5 text-black-600 " style="font-size: 1rem;">{{produit?.data.libelle}}</p>
+              <p class="mt-6 text-xs leading-5 text-black-600 " style="font-size: 1.3rem;">Caracteristiques</p>
+              <p class="mt-6 text-xs leading-5 text-black-600 ">{{produit?.data.description}}</p>
+              <button data-modal-target="authentication-modal" data-modal-toggle="authentication-modal"
+                class="mt-4 inline-block rounded-md bg-green-500 px-3 py-2 text-center text-sm font-semibold text-white shadow-sm focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600 "
+                style="margin-bottom:.5rem" type="button">
+                Ajouter
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+<!-- Modal toggle -->
+
+
+<!-- Main modal -->
+
+<form action="" [formGroup]="modal">
+  <div id="authentication-modal" tabindex="-1" aria-hidden="true"
+    class="fixed top-0 left-0 right-0 z-50 hidden w-full p-4 overflow-x-hidden overflow-y-auto md:inset-0 h-[calc(100%-1rem)] max-h-full">
+    <div class="relative w-full max-w-md max-h-full">
+      <!-- Modal content -->
+      <div class="relative bg-white rounded-lg shadow dark:bg-gray-700">
+        <button type="button"
+          class="absolute top-3 right-2.5 text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm w-8 h-8 ml-auto inline-flex justify-center items-center dark:hover:bg-gray-600 dark:hover:text-white"
+          data-modal-hide="authentication-modal">
+          <svg class="w-3 h-3" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 14 14">
+            <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+              d="m1 1 6 6m0 0 6 6M7 7l6-6M7 7l-6 6" />
+          </svg>
+          <span class="sr-only">Close modal</span>
+        </button>
+        <div class="px-6 py-6 lg:px-8">
+          <h3 class="mb-4 text-xl font-medium text-gray-900 dark:text-white">Ajout Produit</h3>
+          <form class="space-y-6" action="#">
+            <div>
+              <label for="" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Prix Vente </label>
+              <input type="number" name="" id="" formControlName="prix"
+                class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white"
+                placeholder="" required>
+            </div>
+            <div>
+              <label for="password"
+                class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Quantité</label>
+              <input type="number" name="password" id="pa" placeholder="" formControlName="qte"
+                class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white"
+                required>
+            </div>
+            <div class="flex justify-end ">
+              <button (click)="validProd()" type="button" data-modal-target="authentication-modal"
+                data-modal-toggle="authentication-modal"
+                class="text-white bg-green-500  font-medium rounded-lg text-sm px-5 py-2.5 text-center ">
+                Valider</button>
+              <button type="button"
+                class="text-white bg-red-700  font-medium rounded-lg text-sm px-5 py-2.5 text-center ">
+                Annuler</button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</form>
+
+<!-- Modal 2 -->
+
+
+<!-- Modal toggle -->
+
+
+<!-- Main modal -->
+<form action="" [formGroup]="modal2">
+  <div id="defaultModal" tabindex="-1" aria-hidden="true"
+    class="fixed top-0 left-0 right-0 z-50 hidden w-full p-4 overflow-x-hidden overflow-y-auto md:inset-0 h-[calc(100%-1rem)] max-h-full">
+    <div class="relative w-full max-w-2xl max-h-full">
+      <!-- Modal content -->
+      <div class="relative bg-white rounded-lg shadow dark:bg-gray-700">
+        <!-- Modal header -->
+        <div class="flex items-start justify-between p-4 border-b rounded-t dark:border-gray-600">
+          <h3 class="text-xl font-semibold text-gray-900 dark:text-white">
+            Terminer la vente
+          </h3>
+          <button type="button"
+            class="text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm w-8 h-8 ml-auto inline-flex justify-center items-center dark:hover:bg-gray-600 dark:hover:text-white"
+            data-modal-hide="defaultModal">
+            <svg class="w-3 h-3" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 14 14">
+              <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                d="m1 1 6 6m0 0 6 6M7 7l6-6M7 7l-6 6" />
+            </svg>
+            <span class="sr-only">Close modal</span>
+          </button>
+        </div>
+        <!-- Modal body -->
+        <div class="p-6 space-y-6 flex flex-col items-center">
+          <div class="flex items-center justify-end -mr-80">
+            <h2 class="font-bold text-1xl text-green-500" style="margin-top: .8rem;">
+              Net à payer:
+            </h2>
+            <h2 class=" text-4xl text-green-500" formControlName="mntantApayer">
+              {{mntGeneral}}Fcfa
+            </h2>
+          </div>
+          <div class="flex items-center ">
+            <div class="bg-amber-700 w-full rounded-l-md p-2 text-white border border-r-0">
+              <h2>Montant encaissé</h2>
+            </div>
+            <input formControlName="mntEncaisse" type="number" (input)="validerCommande($event)">
+          </div>
+          <div class="flex items-center justify-end -mr-78">
+            <h2 class="font-bold text-1xl text-green-500" style="margin-top: .8rem;">
+              Rendu:
+            </h2>
+            <h2 class=" text-4xl text-green-500" formControlName="mntRendu">
+              {{mntRendu}}Fcfa
+            </h2>
+          </div>
+        </div>
+        <!-- Modal footer -->
+        <div class="flex items-center p-6 space-x-2 border-t border-gray-200 rounded-b dark:border-gray-600">
+          <button data-modal-hide="defaultModal" type="button"
+            class="text-white bg-red-700  focus:ring-4 focus:outline-none font-medium rounded-lg text-sm px-5 py-2.5 text-center ">Annuler</button>
+          <button data-modal-hide="defaultModal" type="button"
+            class="text-white bg-blue-700 focus:ring-4 focus:outline-none  rounded-lg border border-gray-200 text-sm font-medium px-5 py-2.5  focus:z-10 "
+            (click)="store()">Terminer</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</form>
